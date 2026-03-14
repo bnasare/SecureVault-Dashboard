@@ -8,11 +8,24 @@
   :root {
     --background: 225 25% 4%;
     --foreground: 170 30% 85%;
+
+    --card: 225 22% 7%;
+    --card-foreground: 170 30% 85%;
+
     --primary: 170 100% 42%;
+    --secondary: 225 18% 12%;
+    --secondary-foreground: 170 20% 70%;
+
     --border: 225 20% 12%;
+
     --vault-glow: 170 100% 42%;
-    --vault-dim: 220 10% 32%;
     --vault-surface: 225 20% 9%;
+    --vault-surface-hover: 225 18% 13%;
+    --vault-dim: 220 10% 32%;
+    --vault-folder: 45 90% 58%;
+    --vault-file: 170 60% 55%;
+    --vault-grid: 225 20% 8%;
+    --vault-scanline: 170 100% 42%;
   }
 
   * {
@@ -22,5 +35,78 @@
   body {
     @apply bg-background text-foreground antialiased;
     font-family: 'Space Grotesk', system-ui, sans-serif;
+  }
+
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--vault-glow) / 0.2);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--vault-glow) / 0.4);
+  }
+}
+
+@layer utilities {
+  .vault-glow {
+    text-shadow: 0 0 8px hsl(var(--vault-glow) / 0.6), 0 0 20px hsl(var(--vault-glow) / 0.2);
+  }
+
+  .vault-grid-bg {
+    background-image:
+      linear-gradient(hsl(var(--vault-grid)) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--vault-grid)) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .vault-scanlines {
+    position: relative;
+  }
+
+  .vault-scanlines::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      hsl(var(--vault-scanline) / 0.015) 2px,
+      hsl(var(--vault-scanline) / 0.015) 4px
+    );
+    pointer-events: none;
+    z-index: 50;
+  }
+
+  .vault-gradient-line {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      hsl(var(--vault-glow) / 0.3) 20%,
+      hsl(var(--vault-glow) / 0.6) 50%,
+      hsl(var(--vault-glow) / 0.3) 80%,
+      transparent 100%
+    );
+    height: 1px;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      opacity: 0.4;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 3s ease-in-out infinite;
   }
 }
