@@ -2,16 +2,21 @@ import { Shield, Lock, Terminal, Wifi } from "lucide-react";
 import { TreeNode } from "@/features/file-explorer/presentation/components/TreeNode";
 import { useFileExplorer } from "@/features/file-explorer/presentation/hooks/useFileExplorer";
 import { PropertiesPanel } from "@/features/file-explorer/presentation/components/PropertiesPanel";
+import { SearchBar } from "@/features/file-explorer/presentation/components/SearchBar";
 
 export function FileExplorer() {
   const {
     data,
-    expandedIds,
+    effectiveExpanded,
+    filteredData,
     focusedId,
+    searchMatchIds,
+    searchQuery,
     selectedNode,
     treeRef,
     visibleNodes,
     focusNode,
+    setSearchQuery,
     setFocusedId,
     selectNode,
     toggleFolder,
@@ -51,6 +56,10 @@ export function FileExplorer() {
             <span className="ml-auto text-[9px] font-mono text-vault-dim tabular-nums">{visibleNodes.length}</span>
           </div>
 
+          <div className="px-3 py-2 border-b border-border">
+            <SearchBar value={searchQuery} onChange={setSearchQuery} />
+          </div>
+
           <div
             ref={treeRef}
             role="tree"
@@ -63,23 +72,36 @@ export function FileExplorer() {
               }
             }}
           >
-            {data.map((node) => (
-              <TreeNode
-                key={node.id}
-                node={node}
-                depth={0}
-                expandedIds={expandedIds}
-                selectedId={selectedNode?.id ?? null}
-                focusedId={focusedId}
-                onToggle={toggleFolder}
-                onSelect={selectNode}
-                onFocusNode={focusNode}
-              />
-            ))}
+            {searchQuery && searchMatchIds.size === 0 ? (
+              <div className="px-4 py-10 text-center">
+                <p className="text-[10px] font-mono text-vault-dim">NO RESULTS FOR</p>
+                <p className="text-[11px] font-mono text-primary mt-1">"{searchQuery}"</p>
+              </div>
+            ) : (
+              filteredData.map((node) => (
+                <TreeNode
+                  key={node.id}
+                  node={node}
+                  depth={0}
+                  expandedIds={effectiveExpanded}
+                  selectedId={selectedNode?.id ?? null}
+                  focusedId={focusedId}
+                  searchMatchIds={searchMatchIds}
+                  onToggle={toggleFolder}
+                  onSelect={selectNode}
+                  onFocusNode={focusNode}
+                />
+              ))
+            )}
           </div>
 
           <div className="px-3 py-1.5 border-t border-border text-[9px] font-mono text-vault-dim flex items-center justify-between shrink-0">
             <span className="uppercase tracking-wider">{visibleNodes.length} nodes</span>
+            {searchQuery && (
+              <span className="text-primary">
+                {searchMatchIds.size} match{searchMatchIds.size !== 1 ? "es" : ""}
+              </span>
+            )}
           </div>
         </div>
 

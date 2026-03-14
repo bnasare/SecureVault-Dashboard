@@ -7,6 +7,7 @@ interface TreeNodeProps {
   expandedIds: Set<string>;
   selectedId: string | null;
   focusedId: string | null;
+  searchMatchIds: Set<string>;
   onToggle: (id: string) => void;
   onSelect: (node: FileNode) => void;
   onFocusNode: (id: string) => void;
@@ -18,6 +19,7 @@ export function TreeNode({
   expandedIds,
   selectedId,
   focusedId,
+  searchMatchIds,
   onToggle,
   onSelect,
   onFocusNode,
@@ -26,6 +28,7 @@ export function TreeNode({
   const isExpanded = expandedIds.has(node.id);
   const isSelected = selectedId === node.id;
   const isFocused = focusedId === node.id;
+  const isSearchMatch = searchMatchIds.has(node.id);
   const paddingLeft = 16 + depth * 18;
 
   const handleClick = () => {
@@ -64,7 +67,11 @@ export function TreeNode({
 
         {isFolder ? <ChevronIcon isOpen={isExpanded} /> : <span className="w-3 shrink-0" />}
         <FileIcon type={node.type} isOpen={isExpanded} />
-        <span className={`truncate transition-colors ${isSelected ? "text-foreground" : "group-hover:text-foreground"}`}>
+        <span
+          className={`truncate transition-colors ${
+            isSearchMatch ? "text-primary vault-glow" : ""
+          } ${isSelected ? "text-foreground" : "group-hover:text-foreground"}`}
+        >
           {node.name}
         </span>
         {node.size && (
@@ -84,6 +91,7 @@ export function TreeNode({
               expandedIds={expandedIds}
               selectedId={selectedId}
               focusedId={focusedId}
+              searchMatchIds={searchMatchIds}
               onToggle={onToggle}
               onSelect={onSelect}
               onFocusNode={onFocusNode}
