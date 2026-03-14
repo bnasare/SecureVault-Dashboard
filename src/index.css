@@ -21,6 +21,8 @@
     --vault-glow: 170 100% 42%;
     --vault-surface: 225 20% 9%;
     --vault-surface-hover: 225 18% 13%;
+    --vault-selected: 170 100% 8%;
+    --vault-selected-border: 170 100% 35%;
     --vault-dim: 220 10% 32%;
     --vault-folder: 45 90% 58%;
     --vault-file: 170 60% 55%;

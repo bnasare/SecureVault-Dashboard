@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
 
 export default {
   darkMode: ["class"],
@@ -22,6 +23,8 @@ export default {
           glow: "hsl(var(--vault-glow))",
           surface: "hsl(var(--vault-surface))",
           "surface-hover": "hsl(var(--vault-surface-hover))",
+          selected: "hsl(var(--vault-selected))",
+          "selected-border": "hsl(var(--vault-selected-border))",
           dim: "hsl(var(--vault-dim))",
           folder: "hsl(var(--vault-folder))",
           file: "hsl(var(--vault-file))",
@@ -38,5 +41,5 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [tailwindcssAnimate],
 } satisfies Config;

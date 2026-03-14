@@ -1,9 +1,11 @@
 import { Shield, Lock, Terminal, Wifi } from "lucide-react";
 import { TreeNode } from "@/features/file-explorer/presentation/components/TreeNode";
 import { useFileExplorer } from "@/features/file-explorer/presentation/hooks/useFileExplorer";
+import { PropertiesPanel } from "@/features/file-explorer/presentation/components/PropertiesPanel";
 
 export function FileExplorer() {
-  const { data, expandedIds, visibleNodes, toggleFolder } = useFileExplorer();
+  const { data, expandedIds, selectedNode, visibleNodes, selectNode, toggleFolder } =
+    useFileExplorer();
 
   return (
     <div className="flex flex-col h-screen bg-background vault-scanlines">
@@ -46,7 +48,9 @@ export function FileExplorer() {
                 node={node}
                 depth={0}
                 expandedIds={expandedIds}
+                selectedId={selectedNode?.id ?? null}
                 onToggle={toggleFolder}
+                onSelect={selectNode}
               />
             ))}
           </div>
@@ -56,8 +60,8 @@ export function FileExplorer() {
           </div>
         </div>
 
-        <div className="flex-1 bg-background min-w-[280px] vault-grid-bg flex items-center justify-center">
-          <p className="text-[11px] font-mono text-vault-dim tracking-wider uppercase">Properties panel in Story 2</p>
+        <div className="flex-1 bg-background min-w-[280px]">
+          <PropertiesPanel node={selectedNode} />
         </div>
       </div>
     </div>
