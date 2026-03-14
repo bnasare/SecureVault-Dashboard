@@ -84,7 +84,7 @@ export function FileExplorer() {
         </div>
 
         <div className="flex-1 bg-background min-w-[280px]">
-          <PropertiesPanel node={selectedNode} />
+          <PropertiesPanel node={selectedNode} allNodes={data} />
         </div>
       </div>
     </div>

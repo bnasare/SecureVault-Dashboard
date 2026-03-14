@@ -16,3 +16,28 @@ export function flattenVisibleTree(
 
   return result;
 }
+
+export function getNodePath(
+  nodes: FileNode[],
+  targetId: string,
+  currentPath: string[] = []
+): string[] | null {
+  for (const node of nodes) {
+    if (node.id === targetId) {
+      return [...currentPath, node.name];
+    }
+
+    if (node.children) {
+      const foundPath = getNodePath(node.children, targetId, [
+        ...currentPath,
+        node.name,
+      ]);
+
+      if (foundPath) {
+        return foundPath;
+      }
+    }
+  }
+
+  return null;
+}

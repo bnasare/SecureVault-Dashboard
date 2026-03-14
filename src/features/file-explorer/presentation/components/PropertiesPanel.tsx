@@ -1,12 +1,14 @@
 import { FileNode } from "@/features/file-explorer/domain/entities/FileNode";
+import { getNodePath } from "@/features/file-explorer/domain/usecase/getNodePath";
 import { FileIcon } from "@/features/file-explorer/presentation/components/FileIcon";
-import { HardDrive, Tag, Layers, Shield } from "lucide-react";
+import { HardDrive, Tag, Layers, Shield, ChevronRight } from "lucide-react";
 
 interface PropertiesPanelProps {
   node: FileNode | null;
+  allNodes: FileNode[];
 }
 
-export function PropertiesPanel({ node }: PropertiesPanelProps) {
+export function PropertiesPanel({ node, allNodes }: PropertiesPanelProps) {
   if (!node) {
     return (
       <div className="h-full flex items-center justify-center vault-grid-bg px-8">
@@ -24,6 +26,7 @@ export function PropertiesPanel({ node }: PropertiesPanelProps) {
 
   const fileType = node.type === "folder" ? "Directory" : "File";
   const fileSize = node.size ?? "N/A";
+  const path = getNodePath(allNodes, node.id) ?? [node.name];
 
   const properties = [
     { icon: Tag, label: "NAME", value: node.name },
@@ -42,6 +45,26 @@ export function PropertiesPanel({ node }: PropertiesPanelProps) {
             <h3 className="text-[13px] font-semibold font-mono text-foreground truncate">{node.name}</h3>
             <p className="text-[10px] text-vault-dim mt-1 uppercase tracking-widest">Selected Item</p>
           </div>
+        </div>
+      </div>
+
+      <div className="px-5 py-3 border-b border-border">
+        <p className="text-[9px] uppercase tracking-[0.2em] text-vault-dim mb-2 font-semibold">Location</p>
+        <div className="flex items-center gap-1 flex-wrap">
+          {path.map((segment, index) => (
+            <span key={`${segment}-${index}`} className="flex items-center gap-1">
+              {index > 0 && <ChevronRight size={10} className="text-vault-dim" />}
+              <span
+                className={`text-[10px] font-mono px-1.5 py-0.5 rounded-sm ${
+                  index === path.length - 1
+                    ? "bg-vault-selected text-primary border border-vault-selected-border"
+                    : "text-vault-dim"
+                }`}
+              >
+                {segment}
+              </span>
+            </span>
+          ))}
         </div>
       </div>
 
