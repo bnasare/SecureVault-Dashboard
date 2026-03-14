@@ -23,6 +23,36 @@
                   { "id": "email_2", "name": "Leak_Evidence.png", "type": "file", "size": "8.1MB" }
                 ]
               },
+              {
+                "id": "appeal_chain_1",
+                "name": "Appeal_Documents",
+                "type": "folder",
+                "children": [
+                  {
+                    "id": "appeal_chain_2",
+                    "name": "Round_01",
+                    "type": "folder",
+                    "children": [
+                      {
+                        "id": "appeal_chain_3",
+                        "name": "Round_02",
+                        "type": "folder",
+                        "children": [
+                          {
+                            "id": "appeal_chain_4",
+                            "name": "Round_03",
+                            "type": "folder",
+                            "children": [
+                              { "id": "appeal_note_1", "name": "Appeal_Notes_v1.txt", "type": "file", "size": "18KB" },
+                              { "id": "appeal_note_2", "name": "Appeal_Transcript.pdf", "type": "file", "size": "2.6MB" }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
               { "id": "file_summ", "name": "Case_Summary_Draft_v3.docx", "type": "file", "size": "45KB" }
             ]
           },
@@ -31,7 +61,17 @@
             "name": "Smith_Estate_Dispute",
             "type": "folder",
             "children": [
-              { "id": "will_1", "name": "Last_Will_Testament.pdf", "type": "file", "size": "890KB" }
+              { "id": "will_1", "name": "Last_Will_Testament.pdf", "type": "file", "size": "890KB" },
+              { "id": "hearing_minutes_1", "name": "Hearing_Minutes_Week12.docx", "type": "file", "size": "126KB" }
+            ]
+          },
+          {
+            "id": "case_c",
+            "name": "GlobalInsure_Arbitration",
+            "type": "folder",
+            "children": [
+              { "id": "arb_1", "name": "Arbitration_Brief_v4.pdf", "type": "file", "size": "6.8MB" },
+              { "id": "arb_2", "name": "Witness_List_Updated.xlsx", "type": "file", "size": "420KB" }
             ]
           }
         ]
@@ -40,7 +80,9 @@
         "id": "leg_2",
         "name": "Archived_2020",
         "type": "folder",
-        "children": [] 
+        "children": [
+          { "id": "arch_l1", "name": "Settlement_Memo_2020.pdf", "type": "file", "size": "310KB" }
+        ]
       }
     ]
   },
@@ -55,7 +97,17 @@
         "type": "folder",
         "children": [
           { "id": "pay_feb", "name": "February_2025.xlsx", "type": "file", "size": "2.1MB" },
-          { "id": "pay_mar", "name": "March_2025_Projection.xlsx", "type": "file", "size": "1.8MB" }
+          { "id": "pay_mar", "name": "March_2025_Projection.xlsx", "type": "file", "size": "1.8MB" },
+          { "id": "pay_apr", "name": "April_2025_Projection.xlsx", "type": "file", "size": "1.9MB" }
+        ]
+      },
+      {
+        "id": "fin_2",
+        "name": "Quarterly_Reports",
+        "type": "folder",
+        "children": [
+          { "id": "q1_2025", "name": "Q1_2025_Report.pdf", "type": "file", "size": "5.2MB" },
+          { "id": "q2_2025", "name": "Q2_2025_Report.pdf", "type": "file", "size": "5.5MB" }
         ]
       },
       { "id": "tax_doc", "name": "Tax_Compliance_Checklist.pdf", "type": "file", "size": "340KB" }
@@ -72,7 +124,17 @@
         "type": "folder",
         "children": [
           { "id": "log_err", "name": "error_log_x86.txt", "type": "file", "size": "12MB" },
-          { "id": "log_acc", "name": "access_log_main.txt", "type": "file", "size": "45MB" }
+          { "id": "log_acc", "name": "access_log_main.txt", "type": "file", "size": "45MB" },
+          { "id": "log_auth", "name": "auth_failures_2025_03.txt", "type": "file", "size": "8MB" }
+        ]
+      },
+      {
+        "id": "sec_incidents",
+        "name": "Incident_Reports",
+        "type": "folder",
+        "children": [
+          { "id": "incident_1", "name": "SIEM_Incident_0312.pdf", "type": "file", "size": "2.2MB" },
+          { "id": "incident_2", "name": "Forensic_Notes_0312.txt", "type": "file", "size": "98KB" }
         ]
       },
       { "id": "config_yaml", "name": "docker-compose.yaml", "type": "file", "size": "4KB" }
@@ -89,11 +151,61 @@
         "type": "folder",
         "children": [
           { "id": "logo_svg", "name": "SecureVault_Logo.svg", "type": "file", "size": "15KB" },
-          { "id": "font_main", "name": "Roboto-Bold.ttf", "type": "file", "size": "1.2MB" }
+          { "id": "font_main", "name": "Roboto-Bold.ttf", "type": "file", "size": "1.2MB" },
+          { "id": "brand_guidelines", "name": "Brand_Guidelines_2025.pdf", "type": "file", "size": "3.4MB" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "root_5",
+    "name": "04_Compliance_Audit",
+    "type": "folder",
+    "children": [
+      {
+        "id": "comp_iso",
+        "name": "ISO_27001",
+        "type": "folder",
+        "children": [
+          { "id": "iso_policy", "name": "Policy_Control_Matrix.xlsx", "type": "file", "size": "780KB" },
+          { "id": "iso_evidence", "name": "Evidence_Pack_Q1.zip", "type": "file", "size": "38MB" }
+        ]
+      },
+      {
+        "id": "comp_soc",
+        "name": "SOC2",
+        "type": "folder",
+        "children": [
+          { "id": "soc_gap", "name": "SOC2_Gap_Assessment.docx", "type": "file", "size": "210KB" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "root_6",
+    "name": "05_Product_Engineering",
+    "type": "folder",
+    "children": [
+      {
+        "id": "eng_frontend",
+        "name": "Frontend",
+        "type": "folder",
+        "children": [
+          { "id": "eng_front_spec", "name": "Explorer_Interaction_Spec.md", "type": "file", "size": "67KB" },
+          { "id": "eng_front_notes", "name": "Accessibility_Checklist.txt", "type": "file", "size": "24KB" }
+        ]
+      },
+      {
+        "id": "eng_backend",
+        "name": "Backend",
+        "type": "folder",
+        "children": [
+          { "id": "eng_be_api", "name": "Storage_API_v2.yaml", "type": "file", "size": "52KB" }
         ]
       }
     ]
   },
   { "id": "root_file_1", "name": "README_First.txt", "type": "file", "size": "1KB" },
-  { "id": "root_file_2", "name": ".gitignore", "type": "file", "size": "1KB" }
+  { "id": "root_file_2", "name": ".gitignore", "type": "file", "size": "1KB" },
+  { "id": "root_file_3", "name": "Release_Notes_2025_Q2.pdf", "type": "file", "size": "1.1MB" }
 ]
