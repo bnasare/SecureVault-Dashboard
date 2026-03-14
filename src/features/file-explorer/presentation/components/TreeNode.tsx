@@ -6,8 +6,10 @@ interface TreeNodeProps {
   depth: number;
   expandedIds: Set<string>;
   selectedId: string | null;
+  focusedId: string | null;
   onToggle: (id: string) => void;
   onSelect: (node: FileNode) => void;
+  onFocusNode: (id: string) => void;
 }
 
 export function TreeNode({
@@ -15,15 +17,19 @@ export function TreeNode({
   depth,
   expandedIds,
   selectedId,
+  focusedId,
   onToggle,
   onSelect,
+  onFocusNode,
 }: TreeNodeProps) {
   const isFolder = node.type === "folder";
   const isExpanded = expandedIds.has(node.id);
   const isSelected = selectedId === node.id;
+  const isFocused = focusedId === node.id;
   const paddingLeft = 16 + depth * 18;
 
   const handleClick = () => {
+    onFocusNode(node.id);
     onSelect(node);
     if (isFolder) {
       onToggle(node.id);
@@ -36,14 +42,18 @@ export function TreeNode({
         role="treeitem"
         aria-expanded={isFolder ? isExpanded : undefined}
         aria-selected={isSelected}
+        tabIndex={isFocused ? 0 : -1}
         data-node-id={node.id}
         className={`relative flex items-center gap-2 cursor-pointer select-none h-[30px] text-[12px] font-mono outline-none group ${
           isSelected
             ? "bg-vault-selected border-l border-l-vault-selected-border text-foreground"
             : "border-l border-l-transparent hover:bg-vault-surface-hover hover:border-l-vault-dim/40 text-secondary-foreground"
+        } ${isFocused && !isSelected ? "bg-vault-surface" : ""} ${
+          isFocused ? "shadow-[inset_0_0_0_1px_hsl(var(--vault-glow)/0.12)]" : ""
         }`}
         style={{ paddingLeft }}
         onClick={handleClick}
+        onFocus={() => onFocusNode(node.id)}
       >
         {depth > 0 && (
           <span
@@ -73,8 +83,10 @@ export function TreeNode({
               depth={depth + 1}
               expandedIds={expandedIds}
               selectedId={selectedId}
+              focusedId={focusedId}
               onToggle={onToggle}
               onSelect={onSelect}
+              onFocusNode={onFocusNode}
             />
           ))}
           {node.children.length === 0 && (

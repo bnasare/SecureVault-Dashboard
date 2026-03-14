@@ -4,8 +4,18 @@ import { useFileExplorer } from "@/features/file-explorer/presentation/hooks/use
 import { PropertiesPanel } from "@/features/file-explorer/presentation/components/PropertiesPanel";
 
 export function FileExplorer() {
-  const { data, expandedIds, selectedNode, visibleNodes, selectNode, toggleFolder } =
-    useFileExplorer();
+  const {
+    data,
+    expandedIds,
+    focusedId,
+    selectedNode,
+    treeRef,
+    visibleNodes,
+    focusNode,
+    setFocusedId,
+    selectNode,
+    toggleFolder,
+  } = useFileExplorer();
 
   return (
     <div className="flex flex-col h-screen bg-background vault-scanlines">
@@ -41,7 +51,18 @@ export function FileExplorer() {
             <span className="ml-auto text-[9px] font-mono text-vault-dim tabular-nums">{visibleNodes.length}</span>
           </div>
 
-          <div role="tree" aria-label="File explorer" className="flex-1 overflow-auto py-0.5">
+          <div
+            ref={treeRef}
+            role="tree"
+            aria-label="File explorer"
+            tabIndex={0}
+            className="flex-1 overflow-auto py-0.5 focus:outline-none"
+            onFocus={() => {
+              if (!focusedId && visibleNodes.length > 0) {
+                setFocusedId(visibleNodes[0].id);
+              }
+            }}
+          >
             {data.map((node) => (
               <TreeNode
                 key={node.id}
@@ -49,8 +70,10 @@ export function FileExplorer() {
                 depth={0}
                 expandedIds={expandedIds}
                 selectedId={selectedNode?.id ?? null}
+                focusedId={focusedId}
                 onToggle={toggleFolder}
                 onSelect={selectNode}
+                onFocusNode={focusNode}
               />
             ))}
           </div>
