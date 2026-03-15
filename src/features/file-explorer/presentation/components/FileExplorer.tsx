@@ -23,33 +23,33 @@ export function FileExplorer() {
   } = useFileExplorer();
 
   return (
-    <div className="flex flex-col h-screen bg-background vault-scanlines">
-      <header className="flex items-center px-4 h-10 border-b border-border bg-card shrink-0 z-10">
-        <div className="flex items-center gap-2">
+    <div className="flex flex-col min-h-screen h-[100dvh] bg-background vault-scanlines">
+      <header className="flex flex-wrap items-center gap-y-1 px-3 sm:px-4 py-2 md:h-10 border-b border-border bg-card shrink-0 z-10">
+        <div className="flex items-center gap-2 min-w-0">
           <Shield size={14} className="text-primary vault-glow" />
           <span className="text-[12px] font-bold font-mono tracking-[0.15em] text-foreground vault-glow">
             SECUREVAULT
           </span>
-          <span className="text-[9px] font-mono text-vault-dim ml-1 border border-border px-1.5 py-0.5 rounded-sm uppercase tracking-wider">
+          <span className="text-[9px] font-mono text-vault-dim ml-1 border border-border px-1.5 py-0.5 rounded-sm uppercase tracking-wider whitespace-nowrap">
             Explorer v2.1
           </span>
         </div>
-        <div className="ml-auto flex items-center gap-4">
+        <div className="ml-auto flex items-center justify-end gap-3 sm:gap-4">
           <div className="flex items-center gap-1.5 text-vault-dim">
             <Wifi size={10} className="text-primary animate-pulse-glow" />
-            <span className="text-[9px] font-mono uppercase tracking-wider">Connected</span>
+            <span className="hidden md:inline text-[9px] font-mono uppercase tracking-wider">Connected</span>
           </div>
           <div className="flex items-center gap-1.5 text-vault-dim">
             <Lock size={10} />
-            <span className="text-[9px] font-mono uppercase tracking-wider">AES-256</span>
+            <span className="hidden md:inline text-[9px] font-mono uppercase tracking-wider">AES-256</span>
           </div>
         </div>
       </header>
 
       <div className="vault-gradient-line shrink-0" />
 
-      <div className="flex flex-1 min-h-0">
-        <div className="flex flex-col w-[320px] min-w-[260px] border-r border-border bg-card">
+      <div className="flex flex-1 min-h-0 flex-col md:flex-row">
+        <div className="flex flex-col w-full md:w-[320px] md:min-w-[260px] flex-1 min-h-0 border-b md:border-b-0 md:border-r border-border bg-card">
           <div className="flex items-center gap-2 px-4 h-8 border-b border-border bg-vault-surface shrink-0">
             <Terminal size={10} className="text-vault-dim" />
             <span className="text-[9px] font-mono text-vault-dim uppercase tracking-[0.2em]">File Tree</span>
@@ -105,7 +105,7 @@ export function FileExplorer() {
           </div>
         </div>
 
-        <div className="flex-1 bg-background min-w-[280px]">
+        <div className="flex-1 min-h-0 bg-background md:min-w-[280px]">
           <PropertiesPanel node={selectedNode} allNodes={data} />
         </div>
       </div>
