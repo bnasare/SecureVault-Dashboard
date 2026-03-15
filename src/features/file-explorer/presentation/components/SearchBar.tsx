@@ -37,7 +37,7 @@ export function SearchBar({ value, onChange }: SearchBarProps) {
         placeholder="Search vault..."
         className="w-full h-7 pl-7 pr-16 text-[11px] font-mono bg-vault-surface border border-border/60 rounded-sm
           text-foreground placeholder:text-vault-dim
-          focus:outline-none focus:border-vault-glow/30 focus:shadow-[0_0_8px_hsl(var(--vault-glow)/0.08)]
+          focus:outline-none focus:border-vault-glow/30 focus:shadow-[0_0_8px_rgb(0_214_179/0.08)]
           transition-all"
       />
       {value ? (

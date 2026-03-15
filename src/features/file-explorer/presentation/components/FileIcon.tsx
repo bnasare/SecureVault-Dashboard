@@ -11,7 +11,7 @@ export function FileIcon({ type, isOpen, size = 15 }: FileIconProps) {
     return isOpen ? (
       <FolderOpen
         size={size}
-        className="text-vault-folder shrink-0 drop-shadow-[0_0_3px_hsl(var(--vault-folder)/0.4)]"
+        className="text-vault-folder shrink-0 drop-shadow-[0_0_3px_rgb(244_196_52/0.4)]"
       />
     ) : (
       <Folder size={size} className="text-vault-folder shrink-0" />

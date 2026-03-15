@@ -6,28 +6,28 @@
 
 @layer base {
   :root {
-    --background: 225 25% 4%;
-    --foreground: 170 30% 85%;
+    --background: #08090d;
+    --foreground: #cde4e0;
 
-    --card: 225 22% 7%;
-    --card-foreground: 170 30% 85%;
+    --card: #0e1016;
+    --card-foreground: #cde4e0;
 
-    --primary: 170 100% 42%;
-    --secondary: 225 18% 12%;
-    --secondary-foreground: 170 20% 70%;
+    --primary: #00d6b3;
+    --secondary: #191c24;
+    --secondary-foreground: #a3c2bd;
 
-    --border: 225 20% 12%;
+    --border: #181c25;
 
-    --vault-glow: 170 100% 42%;
-    --vault-surface: 225 20% 9%;
-    --vault-surface-hover: 225 18% 13%;
-    --vault-selected: 170 100% 8%;
-    --vault-selected-border: 170 100% 35%;
-    --vault-dim: 220 10% 32%;
-    --vault-folder: 45 90% 58%;
-    --vault-file: 170 60% 55%;
-    --vault-grid: 225 20% 8%;
-    --vault-scanline: 170 100% 42%;
+    --vault-glow: #00d6b3;
+    --vault-surface: #12151c;
+    --vault-surface-hover: #1b1e27;
+    --vault-selected: #002922;
+    --vault-selected-border: #00b395;
+    --vault-dim: #494f5a;
+    --vault-folder: #f4c434;
+    --vault-file: #47d1ba;
+    --vault-grid: #101218;
+    --vault-scanline: #00d6b3;
   }
 
   * {
@@ -48,23 +48,23 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: hsl(var(--vault-glow) / 0.2);
+    background: rgb(0 214 179 / 0.2);
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--vault-glow) / 0.4);
+    background: rgb(0 214 179 / 0.4);
   }
 }
 
 @layer utilities {
   .vault-glow {
-    text-shadow: 0 0 8px hsl(var(--vault-glow) / 0.6), 0 0 20px hsl(var(--vault-glow) / 0.2);
+    text-shadow: 0 0 8px rgb(0 214 179 / 0.6), 0 0 20px rgb(0 214 179 / 0.2);
   }
 
   .vault-grid-bg {
     background-image:
-      linear-gradient(hsl(var(--vault-grid)) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--vault-grid)) 1px, transparent 1px);
+      linear-gradient(var(--vault-grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--vault-grid) 1px, transparent 1px);
     background-size: 20px 20px;
   }
 
@@ -80,8 +80,8 @@
       0deg,
       transparent,
       transparent 2px,
-      hsl(var(--vault-scanline) / 0.015) 2px,
-      hsl(var(--vault-scanline) / 0.015) 4px
+      rgb(0 214 179 / 0.015) 2px,
+      rgb(0 214 179 / 0.015) 4px
     );
     pointer-events: none;
     z-index: 50;
@@ -91,9 +91,9 @@
     background: linear-gradient(
       90deg,
       transparent 0%,
-      hsl(var(--vault-glow) / 0.3) 20%,
-      hsl(var(--vault-glow) / 0.6) 50%,
-      hsl(var(--vault-glow) / 0.3) 80%,
+      rgb(0 214 179 / 0.3) 20%,
+      rgb(0 214 179 / 0.6) 50%,
+      rgb(0 214 179 / 0.3) 80%,
       transparent 100%
     );
     height: 1px;

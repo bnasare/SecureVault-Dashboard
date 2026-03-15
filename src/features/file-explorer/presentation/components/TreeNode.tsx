@@ -52,11 +52,15 @@ export function TreeNode({
             ? "bg-vault-selected border-l border-l-vault-selected-border text-foreground"
             : "border-l border-l-transparent hover:bg-vault-surface-hover hover:border-l-vault-dim/40 text-secondary-foreground"
         } ${isFocused && !isSelected ? "bg-vault-surface" : ""} ${
-          isFocused ? "shadow-[inset_0_0_0_1px_hsl(var(--vault-glow)/0.12)]" : ""
+          isFocused ? "shadow-[inset_0_0_0_1px_rgb(0_214_179/0.12)]" : ""
         }`}
         style={{ paddingLeft }}
         onClick={handleClick}
-        onFocus={() => onFocusNode(node.id)}
+        onFocus={() => {
+          if (!isFocused) {
+            onFocusNode(node.id);
+          }
+        }}
       >
         {depth > 0 && (
           <span
