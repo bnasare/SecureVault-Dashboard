@@ -49,7 +49,7 @@ export function FileExplorer() {
       <div className="vault-gradient-line shrink-0" />
 
       <div className="flex flex-1 min-h-0 flex-col md:flex-row">
-        <div className="flex flex-col w-full md:w-[320px] md:min-w-[260px] flex-1 min-h-0 border-b md:border-b-0 md:border-r border-border bg-card">
+        <div className="flex flex-col w-full flex-1 md:flex-none md:w-[320px] md:min-w-[260px] min-h-0 border-b md:border-b-0 md:border-r border-border bg-card">
           <div className="flex items-center gap-2 px-4 h-8 border-b border-border bg-vault-surface shrink-0">
             <Terminal size={10} className="text-vault-dim" />
             <span className="text-[9px] font-mono text-vault-dim uppercase tracking-[0.2em]">File Tree</span>
