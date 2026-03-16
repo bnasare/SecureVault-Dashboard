@@ -115,6 +115,16 @@ export function useFileExplorer() {
   useEffect(() => {
     if (!focusedId) return;
 
+    const activeElement = document.activeElement as HTMLElement | null;
+    const isTypingFieldFocused =
+      !!activeElement &&
+      (activeElement.tagName === "INPUT" ||
+        activeElement.tagName === "TEXTAREA" ||
+        activeElement.isContentEditable) &&
+      !treeRef.current?.contains(activeElement);
+
+    if (isTypingFieldFocused) return;
+
     const element = document.querySelector(
       `[data-node-id="${focusedId}"]`
     ) as HTMLElement | null;

@@ -85,4 +85,19 @@ describe("FileExplorer component", () => {
     expect(screen.getByText('"zzzz_non_existent"')).toBeInTheDocument();
     expect(screen.getByText(/0 matches/i)).toBeInTheDocument();
   });
+
+  it("does not steal focus from the search input while typing", async () => {
+    const user = userEvent.setup();
+    render(<FileExplorer />);
+
+    const searchInput = screen.getByPlaceholderText(/search vault/i);
+    await user.click(searchInput);
+    await user.type(searchInput, "REA");
+
+    expect(searchInput).toHaveFocus();
+
+    await user.type(searchInput, "D");
+    expect(searchInput).toHaveFocus();
+    expect(searchInput).toHaveValue("READ");
+  });
 });
