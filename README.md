@@ -37,7 +37,7 @@ npm run build
 
 ## Design File
 
-- Figma (view-only):
+- Figma (view-only): [Secure Vault Design](https://www.figma.com/design/Xv1DQ2Cn0oQQMO8Kc3IysJ/Secure-Vault?node-id=0-1&t=oX1NuFDl7DyuUuIi-1)
 
 ## Data Source
 
