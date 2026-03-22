@@ -12,25 +12,34 @@ export function useFileExplorer() {
   const [selectedNode, setSelectedNode] = useState<FileNode | null>(null);
   const [focusedId, setFocusedId] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [debouncedSearchQuery, setDebouncedSearchQuery] = useState("");
   const treeRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      setDebouncedSearchQuery(searchQuery);
+    }, 150);
+
+    return () => window.clearTimeout(timer);
+  }, [searchQuery]);
 
   const { matchIds: searchMatchIds, expandIds: searchExpandIds } = useMemo(
     () =>
-      searchQuery
-        ? searchFileTree(data, searchQuery)
+      debouncedSearchQuery
+        ? searchFileTree(data, debouncedSearchQuery)
         : { matchIds: new Set<string>(), expandIds: new Set<string>() },
-    [data, searchQuery]
+    [data, debouncedSearchQuery]
   );
 
   const filteredData = useMemo(
-    () => (searchQuery ? filterFileTree(data, searchQuery) : data),
-    [data, searchQuery]
+    () => (debouncedSearchQuery ? filterFileTree(data, debouncedSearchQuery) : data),
+    [data, debouncedSearchQuery]
   );
 
   const effectiveExpanded = useMemo(() => {
-    if (!searchQuery) return expandedIds;
+    if (!debouncedSearchQuery) return expandedIds;
     return new Set([...expandedIds, ...searchExpandIds]);
-  }, [expandedIds, searchExpandIds, searchQuery]);
+  }, [expandedIds, searchExpandIds, debouncedSearchQuery]);
 
   const visibleNodes = useMemo(
     () => getVisibleNodes(filteredData, effectiveExpanded),
@@ -149,6 +158,8 @@ export function useFileExplorer() {
     focusedId,
     searchMatchIds,
     searchQuery,
+    debouncedSearchQuery,
+    isSearchDebouncing: searchQuery !== debouncedSearchQuery,
     selectedNode,
     treeRef,
     visibleNodes,

@@ -12,6 +12,8 @@ export function FileExplorer() {
     focusedId,
     searchMatchIds,
     searchQuery,
+    debouncedSearchQuery,
+    isSearchDebouncing,
     selectedNode,
     treeRef,
     visibleNodes,
@@ -72,7 +74,7 @@ export function FileExplorer() {
               }
             }}
           >
-            {searchQuery && searchMatchIds.size === 0 ? (
+            {debouncedSearchQuery && !isSearchDebouncing && searchMatchIds.size === 0 ? (
               <div className="px-4 py-10 text-center">
                 <p className="text-[10px] font-mono text-vault-dim">NO RESULTS FOR</p>
                 <p className="text-[11px] font-mono text-primary mt-1">"{searchQuery}"</p>
@@ -97,7 +99,7 @@ export function FileExplorer() {
 
           <div className="px-3 py-1.5 border-t border-border text-[9px] font-mono text-vault-dim flex items-center justify-between shrink-0">
             <span className="uppercase tracking-wider">{visibleNodes.length} nodes</span>
-            {searchQuery && (
+            {debouncedSearchQuery && !isSearchDebouncing && (
               <span className="text-primary">
                 {searchMatchIds.size} match{searchMatchIds.size !== 1 ? "es" : ""}
               </span>

@@ -73,17 +73,21 @@ describe("FileExplorer component", () => {
 
     await user.type(searchInput, "Appeal_Transcript");
 
-    expect(screen.getByText("Appeal_Transcript.pdf")).toBeInTheDocument();
-    expect(screen.getByText("Appeal_Documents")).toBeInTheDocument();
-    expect(screen.queryByText("02_Finance_Team")).not.toBeInTheDocument();
-    expect(screen.getByText(/1 match/i)).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText("Appeal_Transcript.pdf")).toBeInTheDocument();
+      expect(screen.getByText("Appeal_Documents")).toBeInTheDocument();
+      expect(screen.queryByText("02_Finance_Team")).not.toBeInTheDocument();
+      expect(screen.getByText(/1 match/i)).toBeInTheDocument();
+    });
 
     await user.clear(searchInput);
     await user.type(searchInput, "zzzz_non_existent");
 
-    expect(screen.getByText("NO RESULTS FOR")).toBeInTheDocument();
-    expect(screen.getByText('"zzzz_non_existent"')).toBeInTheDocument();
-    expect(screen.getByText(/0 matches/i)).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText("NO RESULTS FOR")).toBeInTheDocument();
+      expect(screen.getByText('"zzzz_non_existent"')).toBeInTheDocument();
+      expect(screen.getByText(/0 matches/i)).toBeInTheDocument();
+    });
   });
 
   it("does not steal focus from the search input while typing", async () => {
